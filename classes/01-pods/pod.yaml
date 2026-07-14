@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: whoami
+spec:
+  containers:
+    - name: whoami
+      image: traefik/whoami
+      ports:
+        - containerPort: 80
