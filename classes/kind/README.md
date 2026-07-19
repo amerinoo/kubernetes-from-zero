@@ -10,12 +10,25 @@ This directory contains the configuration for running the course with [kind](htt
 
 ## Create the cluster
 
-Run this command from the `classes/kind/` directory:
+Run the helper script from any directory:
 
 ```bash
-kind create cluster \
-  --name argocd-cluster \
-  --config kind-config.yaml
+./classes/kind/start.sh
+```
+
+The script checks that Docker, kind, and `kubectl` are installed, uses the
+configuration in this directory, and reuses the cluster if it already exists.
+To use a different cluster name, set `KIND_CLUSTER_NAME`:
+
+```bash
+KIND_CLUSTER_NAME=course-cluster ./classes/kind/start.sh
+```
+
+You can also run the script from inside this directory:
+
+```bash
+cd classes/kind
+./start.sh
 ```
 
 Verify that the cluster is ready:
@@ -64,8 +77,17 @@ For the Ingress class, install an Ingress Controller first, then apply the backe
 
 ## Delete the cluster
 
+Use the helper script:
+
 ```bash
-kind delete cluster --name argocd-cluster
+./classes/kind/stop.sh
 ```
 
-Deleting the cluster removes its nodes and all resources running inside it.
+To delete a cluster with a custom name:
+
+```bash
+KIND_CLUSTER_NAME=course-cluster ./classes/kind/stop.sh
+```
+
+The script is safe to run when the cluster does not exist. Deleting the
+cluster removes its nodes and all resources running inside it.
