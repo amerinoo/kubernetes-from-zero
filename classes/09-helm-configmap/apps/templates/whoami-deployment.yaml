@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whoami
+  labels:
+    environment: {{ .Values.environment | quote }}
+spec:
+  replicas: {{ .Values.whoami.replicaCount }}
+  selector:
+    matchLabels:
+      app: whoami
+      environment: {{ .Values.environment | quote }}
+  template:
+    metadata:
+      labels:
+        app: whoami
+        environment: {{ .Values.environment | quote }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+    spec:
+      containers:
+        - name: whoami
+          image: "{{ .Values.whoami.image.repository }}:{{ .Values.whoami.image.tag }}"
+          volumeMounts:
+            - name: app-config
+              mountPath: /etc/app-config
+              readOnly: true
+          ports:
+            - containerPort: 80
+      volumes:
+        - name: app-config
+          configMap:
+            name: {{ .Release.Name }}-config

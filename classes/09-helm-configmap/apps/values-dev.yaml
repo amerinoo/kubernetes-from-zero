@@ -1,0 +1,15 @@
+environment: dev
+
+echo:
+  replicaCount: 1
+
+whoami:
+  replicaCount: 1
+
+ingress:
+  host: hello-dev.local
+
+config:
+  appName: apps-dev
+  logLevel: debug
+  welcomeMessage: Hello from the development environment

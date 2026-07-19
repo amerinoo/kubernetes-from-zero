@@ -1,0 +1,15 @@
+environment: prod
+
+echo:
+  replicaCount: 3
+
+whoami:
+  replicaCount: 3
+
+ingress:
+  host: hello.local
+
+config:
+  appName: apps-prod
+  logLevel: warn
+  welcomeMessage: Hello from the production environment
