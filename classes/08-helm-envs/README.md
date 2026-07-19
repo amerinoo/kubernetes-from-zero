@@ -111,6 +111,27 @@ helm upgrade apps-prod ./classes/08-helm-envs/apps \
   -n apps-prod
 ```
 
+## Roll back an environment
+
+List the release revisions before rolling back:
+
+```bash
+helm history apps-dev -n apps-dev
+```
+
+Roll the development release back to revision 4:
+
+```bash
+helm rollback apps-dev 4 -n apps-dev
+```
+
+Verify the release after the rollback:
+
+```bash
+helm status apps-dev -n apps-dev
+helm get values apps-dev -n apps-dev
+```
+
 To remove the practice installations:
 
 ```bash
