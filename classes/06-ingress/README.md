@@ -66,10 +66,7 @@ An **NGINX Ingress Controller** must be installed in the cluster. For local envi
 
 ```bash
 # Docker Desktop / kind
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml
-
-# minikube
-minikube addons enable ingress
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 ```
 
 ## Commands
