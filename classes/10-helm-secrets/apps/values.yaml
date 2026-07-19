@@ -1,0 +1,24 @@
+environment: dev
+
+echo:
+  replicaCount: 1
+  image:
+    repository: ealen/echo-server
+    tag: latest
+
+whoami:
+  replicaCount: 1
+  image:
+    repository: traefik/whoami
+    tag: latest
+
+ingress:
+  host: hello-dev.local
+
+config:
+  appName: apps-dev
+  logLevel: info
+  welcomeMessage: Hello from the development environment
+
+secret:
+  existingSecret: apps-secret

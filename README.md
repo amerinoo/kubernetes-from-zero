@@ -14,6 +14,7 @@ graph LR
     ING --> H["07 · Helm"]
     H --> ENV["08 · Helm Environments"]
     ENV --> CM["09 · Helm ConfigMaps"]
+    CM --> SEC["10 · Helm Secrets"]
 ```
 
 ## Classes
@@ -29,13 +30,14 @@ graph LR
 | [07](classes/07-helm/) | **Helm** | Package the Ingress application as a chart and parameterise it progressively |
 | [08](classes/08-helm-envs/) | **Helm Environments** | Deploy the same chart with separate development and production values |
 | [09](classes/09-helm-configmap/) | **Helm ConfigMaps** | Store non-sensitive configuration and consume it as environment variables or mounted files |
+| [10](classes/10-helm-secrets/) | **Helm Secrets** | Reference an externally managed Secret and inject selected keys into Pods |
 
 ## Images Used
 
 | Image | Used in |
 |---|---|
-| `traefik/whoami` | 01 · Pods, 06 · Ingress, 07–09 · Helm |
-| `ealen/echo-server` | 02 · ReplicaSets, 03 · Deployments, 04 · Services, 05 · NodePort, 06 · Ingress, 07–09 · Helm |
+| `traefik/whoami` | 01 · Pods, 06 · Ingress, 07–10 · Helm |
+| `ealen/echo-server` | 02 · ReplicaSets, 03 · Deployments, 04 · Services, 05 · NodePort, 06 · Ingress, 07–10 · Helm |
 | `curlimages/curl` | 04 · Services (temporary test Pod) |
 
 ## Prerequisites
@@ -43,7 +45,8 @@ graph LR
 - A running Kubernetes cluster (Docker Desktop, minikube, or kind)
 - `kubectl` configured and pointing to the cluster
 - For class 06: an NGINX Ingress Controller installed in the cluster
-- For classes 07–09: Helm installed and available as `helm`
+- For classes 07–10: Helm installed and available as `helm`
+- For class 10: an external Kubernetes Secret created in the target namespace
 
 ## Notes
 

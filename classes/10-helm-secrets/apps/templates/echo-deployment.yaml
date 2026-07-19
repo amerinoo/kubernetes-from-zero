@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo
+  labels:
+    environment: {{ .Values.environment | quote }}
+spec:
+  replicas: {{ .Values.echo.replicaCount }}
+  selector:
+    matchLabels:
+      app: echo
+      environment: {{ .Values.environment | quote }}
+  template:
+    metadata:
+      labels:
+        app: echo
+        environment: {{ .Values.environment | quote }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+    spec:
+      containers:
+        - name: echo
+          image: "{{ .Values.echo.image.repository }}:{{ .Values.echo.image.tag }}"
+          envFrom:
+            - configMapRef:
+                name: {{ .Release.Name }}-config
+            - secretRef:
+                name: {{ .Values.secret.existingSecret }}
+          ports:
+            - containerPort: 80
