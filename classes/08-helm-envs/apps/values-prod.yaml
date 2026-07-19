@@ -1,0 +1,10 @@
+environment: prod
+
+echo:
+  replicaCount: 3
+
+whoami:
+  replicaCount: 3
+
+ingress:
+  host: hello.local

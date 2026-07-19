@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whoami
+  labels:
+    environment: {{ .Values.environment | quote }}
+spec:
+  replicas: {{ .Values.whoami.replicaCount }}
+  selector:
+    matchLabels:
+      app: whoami
+      environment: {{ .Values.environment | quote }}
+  template:
+    metadata:
+      labels:
+        app: whoami
+        environment: {{ .Values.environment | quote }}
+    spec:
+      containers:
+        - name: whoami
+          image: "{{ .Values.whoami.image.repository }}:{{ .Values.whoami.image.tag }}"
+          ports:
+            - containerPort: 80
