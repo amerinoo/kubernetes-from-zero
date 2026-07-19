@@ -1,6 +1,6 @@
 # Kubernetes From Zero
 
-Hands-on Kubernetes course covering the core building blocks through practical manifests and `kubectl` exercises.
+Hands-on Kubernetes course covering the core building blocks through practical manifests, `kubectl` exercises, and Helm charts.
 
 ## Course Structure
 
@@ -12,6 +12,8 @@ graph LR
     SVC --> NP["05 · NodePort"]
     NP --> ING["06 · Ingress"]
     ING --> H["07 · Helm"]
+    H --> ENV["08 · Helm Environments"]
+    ENV --> CM["09 · Helm ConfigMaps"]
 ```
 
 ## Classes
@@ -25,13 +27,15 @@ graph LR
 | [05](classes/05-nodeport/) | **NodePort** | Expose a Service outside the cluster on a fixed node port |
 | [06](classes/06-ingress/) | **Ingress** | Route external HTTP traffic to multiple backends using path-based rules |
 | [07](classes/07-helm/) | **Helm** | Package the Ingress application as a chart and parameterise it progressively |
+| [08](classes/08-helm-envs/) | **Helm Environments** | Deploy the same chart with separate development and production values |
+| [09](classes/09-helm-configmap/) | **Helm ConfigMaps** | Store non-sensitive configuration and consume it as environment variables or mounted files |
 
 ## Images Used
 
 | Image | Used in |
 |---|---|
-| `traefik/whoami` | 01 · Pods, 06 · Ingress |
-| `ealen/echo-server` | 02 · ReplicaSets, 03 · Deployments, 04 · Services, 05 · NodePort, 06 · Ingress |
+| `traefik/whoami` | 01 · Pods, 06 · Ingress, 07–09 · Helm |
+| `ealen/echo-server` | 02 · ReplicaSets, 03 · Deployments, 04 · Services, 05 · NodePort, 06 · Ingress, 07–09 · Helm |
 | `curlimages/curl` | 04 · Services (temporary test Pod) |
 
 ## Prerequisites
@@ -39,6 +43,7 @@ graph LR
 - A running Kubernetes cluster (Docker Desktop, minikube, or kind)
 - `kubectl` configured and pointing to the cluster
 - For class 06: an NGINX Ingress Controller installed in the cluster
+- For classes 07–09: Helm installed and available as `helm`
 
 ## Notes
 
