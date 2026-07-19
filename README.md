@@ -11,6 +11,7 @@ graph LR
     D --> SVC["04 · Services\nClusterIP"]
     SVC --> NP["05 · NodePort"]
     NP --> ING["06 · Ingress"]
+    ING --> H["07 · Helm"]
 ```
 
 ## Classes
@@ -23,6 +24,7 @@ graph LR
 | [04](classes/04-services/) | **Services (ClusterIP)** | Expose Pods internally via a stable DNS name; test with port-forward and a curl Pod |
 | [05](classes/05-nodeport/) | **NodePort** | Expose a Service outside the cluster on a fixed node port |
 | [06](classes/06-ingress/) | **Ingress** | Route external HTTP traffic to multiple backends using path-based rules |
+| [07](classes/07-helm/) | **Helm** | Package the Ingress application as a chart and parameterise it progressively |
 
 ## Images Used
 

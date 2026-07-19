@@ -1,0 +1,6 @@
+apiVersion: v2
+name: apps
+description: Helm chart for the applications from class 06
+type: application
+version: 0.1.0
+appVersion: "1.0"
