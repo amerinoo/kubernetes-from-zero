@@ -11,7 +11,7 @@ ingress:
 
 config:
   appName: apps-dev
-  logLevel: debug
+  logLevel: info
   welcomeMessage: Hello from the development environment
 
 secret:
