@@ -1,7 +1,7 @@
 environment: dev
 
 echo:
-  replicaCount: 2
+  replicaCount: 1
 
 whoami:
   replicaCount: 1
