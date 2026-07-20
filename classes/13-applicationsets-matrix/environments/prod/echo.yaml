@@ -1,0 +1,11 @@
+environment: prod
+
+replicaCount: 3
+
+ingress:
+  host: hello.local
+
+config:
+  appName: echo-prod
+  logLevel: warn
+  welcomeMessage: Hello from the production echo service
