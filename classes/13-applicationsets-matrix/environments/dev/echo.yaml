@@ -1,9 +1,4 @@
-environment: dev
-
 replicaCount: 1
-
-ingress:
-  host: hello-dev.local
 
 config:
   appName: echo-dev

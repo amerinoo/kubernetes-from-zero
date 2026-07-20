@@ -5,18 +5,18 @@ metadata:
   name: echo
   labels:
     app: echo
-    environment: {{ .Values.environment | quote }}
+    environment: {{ .Values.env | quote }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: echo
-      environment: {{ .Values.environment | quote }}
+      environment: {{ .Values.env | quote }}
   template:
     metadata:
       labels:
         app: echo
-        environment: {{ .Values.environment | quote }}
+        environment: {{ .Values.env | quote }}
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     spec:

@@ -1,16 +1,17 @@
+{{- $host := required "ingress.host is required" (dig "host" "" (default dict .Values.ingress)) }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: whoami
   labels:
     app: whoami
-    environment: {{ .Values.environment | quote }}
+    environment: {{ .Values.env | quote }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
-    - host: {{ .Values.ingress.host | quote }}
+    - host: {{ $host | quote }}
       http:
         paths:
           - path: /whoami

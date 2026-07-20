@@ -4,6 +4,9 @@ components:
   - app: echo
   - app: whoami
 
+ingress:
+  host: hello-dev.local
+
 image:
   tag:
     echo: latest

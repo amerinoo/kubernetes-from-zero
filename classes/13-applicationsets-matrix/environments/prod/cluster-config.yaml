@@ -3,6 +3,9 @@ env: prod
 components:
   - app: whoami
 
+ingress:
+  host: hello.local
+
 image:
   tag:
     whoami: latest

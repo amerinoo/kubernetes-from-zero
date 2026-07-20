@@ -1,12 +1,7 @@
-environment: dev
-
 replicaCount: 1
 
 image:
   repository: ealen/echo-server
-
-ingress:
-  host: hello-dev.local
 
 config:
   appName: echo-dev

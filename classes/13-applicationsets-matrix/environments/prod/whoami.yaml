@@ -1,9 +1,4 @@
-environment: prod
-
 replicaCount: 3
-
-ingress:
-  host: hello.local
 
 config:
   appName: whoami-prod

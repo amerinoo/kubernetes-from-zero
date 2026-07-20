@@ -4,11 +4,11 @@ metadata:
   name: whoami
   labels:
     app: whoami
-    environment: {{ .Values.environment | quote }}
+    environment: {{ .Values.env | quote }}
 spec:
   selector:
     app: whoami
-    environment: {{ .Values.environment | quote }}
+    environment: {{ .Values.env | quote }}
   ports:
     - port: 80
       targetPort: 80

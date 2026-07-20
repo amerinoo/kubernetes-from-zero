@@ -143,13 +143,20 @@ This answers a useful question directly: “what is deployed in production?”
 Review `environments/prod/` without searching inside every service chart. The
 ApplicationSet derives the relative Helm path from both matrix parameters.
 
+`env` is also passed to Helm through `cluster-config.yaml`, so the charts use
+it for their Kubernetes labels. Service-specific values files do not repeat it.
+
 `cluster-config.yaml` contains settings shared by every service in one
-environment, plus the list of services enabled there:
+environment, plus the list of services enabled there. The shared Ingress host
+belongs here as well:
 
 ```yaml
 env: prod
 components:
   - app: whoami
+
+ingress:
+  host: hello.local
 
 image:
   tag:
