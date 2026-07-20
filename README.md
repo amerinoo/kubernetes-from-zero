@@ -16,6 +16,7 @@ graph LR
     ENV --> CM["09 · Helm ConfigMaps"]
     CM --> SEC["10 · Helm Secrets"]
     SEC --> ARGO["11 · Argo CD"]
+    ARGO --> APPSET["12 · ApplicationSets"]
 ```
 
 ## Classes
@@ -33,6 +34,7 @@ graph LR
 | [09](classes/09-helm-configmap/) | **Helm ConfigMaps** | Store non-sensitive configuration and consume it as environment variables or mounted files |
 | [10](classes/10-helm-secrets/) | **Helm Secrets** | Reference an externally managed Secret and inject selected keys into Pods |
 | [11](classes/11-argocd/) | **Argo CD** | Deploy the class 10 Helm application from Git using GitOps |
+| [12](classes/12-applicationsets/) | **ApplicationSets** | Generate Argo CD Applications for development and production from one template |
 
 ## Images Used
 
@@ -50,6 +52,7 @@ graph LR
 - For classes 07–10: Helm installed and available as `helm`
 - For class 10: an external Kubernetes Secret created in the target namespace
 - For class 11: Argo CD installed in the target cluster and access to the GitHub repository
+- For class 12: external Secrets created for both `apps-dev` and `apps-prod`
 
 ## Notes
 

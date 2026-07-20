@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: apps
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
+  generators:
+    - list:
+        elements:
+          - env: dev
+          - env: prod
+  template:
+    metadata:
+      name: 'apps-{{ .env }}'
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/amerinoo/kubernetes-from-zero.git
+        targetRevision: main
+        path: classes/10-helm-secrets/apps
+        helm:
+          releaseName: 'apps-{{ .env }}'
+          valueFiles:
+            - 'values-{{ .env }}.yaml'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'apps-{{ .env }}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
