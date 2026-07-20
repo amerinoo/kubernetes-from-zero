@@ -18,6 +18,7 @@ graph LR
     SEC --> ARGO["11 · Argo CD"]
     ARGO --> APPSET["12 · ApplicationSets"]
     APPSET --> MATRIX["13 · ApplicationSet Matrix"]
+    MATRIX --> APPOFAPPS["14 · App of Apps"]
 ```
 
 ## Classes
@@ -37,6 +38,7 @@ graph LR
 | [11](classes/11-argocd/) | **Argo CD** | Deploy the class 10 Helm application from Git using GitOps |
 | [12](classes/12-applicationsets/) | **ApplicationSets** | Generate Argo CD Applications for development and production from one template |
 | [13](classes/13-applicationsets-matrix/) | **ApplicationSet Matrix** | Generate independent Argo CD Applications for each application and environment |
+| [14](classes/14-app-of-apps/) | **App of Apps** | Bootstrap an ApplicationSet from a parent Argo CD Application |
 
 ## Images Used
 
@@ -56,6 +58,7 @@ graph LR
 - For class 11: Argo CD installed in the target cluster and access to the GitHub repository
 - For class 12: external Secrets created for both `apps-dev` and `apps-prod`
 - For class 13: class 12 complete and an NGINX Ingress Controller installed
+- For class 14: class 13 pushed to the GitHub repository
 
 ## Notes
 
