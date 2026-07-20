@@ -1,0 +1,8 @@
+env: prod
+
+components:
+  - app: whoami
+
+image:
+  tag:
+    whoami: latest

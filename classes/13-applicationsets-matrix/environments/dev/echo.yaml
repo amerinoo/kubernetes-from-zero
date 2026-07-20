@@ -1,0 +1,11 @@
+environment: dev
+
+replicaCount: 1
+
+ingress:
+  host: hello-dev.local
+
+config:
+  appName: echo-dev
+  logLevel: debug
+  welcomeMessage: Hello from the development echo service

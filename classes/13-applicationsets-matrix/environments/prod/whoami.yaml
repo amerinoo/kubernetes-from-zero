@@ -1,0 +1,11 @@
+environment: prod
+
+replicaCount: 3
+
+ingress:
+  host: hello.local
+
+config:
+  appName: whoami-prod
+  logLevel: warn
+  welcomeMessage: Hello from the production whoami service

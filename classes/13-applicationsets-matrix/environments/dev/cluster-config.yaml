@@ -1,0 +1,10 @@
+env: dev
+
+components:
+  - app: echo
+  - app: whoami
+
+image:
+  tag:
+    echo: latest
+    whoami: latest

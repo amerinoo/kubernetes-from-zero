@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: course-apps
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
+  generators:
+    - matrix:
+        generators:
+          - git:
+              repoURL: https://github.com/amerinoo/kubernetes-from-zero.git
+              revision: main
+              files:
+                - path: classes/13-applicationsets-matrix/environments/*/cluster-config.yaml
+          - list:
+              elementsYaml: '{{ .components | toJson }}'
+  template:
+    metadata:
+      name: '{{ .app }}-{{ .env }}'
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/amerinoo/kubernetes-from-zero.git
+        targetRevision: main
+        path: 'classes/13-applicationsets-matrix/apps/{{ .app }}'
+        helm:
+          releaseName: '{{ .app }}-{{ .env }}'
+          valueFiles:
+            - '../../environments/{{ .env }}/cluster-config.yaml'
+            - '../../environments/{{ .env }}/{{ .app }}.yaml'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'apps-{{ .env }}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

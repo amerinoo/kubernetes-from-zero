@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: echo
+  labels:
+    app: echo
+    environment: {{ .Values.environment | quote }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: {{ .Values.ingress.host | quote }}
+      http:
+        paths:
+          - path: /echo
+            pathType: Prefix
+            backend:
+              service:
+                name: echo
+                port:
+                  number: 80

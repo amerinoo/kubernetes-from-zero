@@ -1,0 +1,30 @@
+{{- $tag := required (printf "image.tag.%s is required" .Chart.Name) (index (default dict .Values.image.tag) .Chart.Name) }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo
+  labels:
+    app: echo
+    environment: {{ .Values.environment | quote }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: echo
+      environment: {{ .Values.environment | quote }}
+  template:
+    metadata:
+      labels:
+        app: echo
+        environment: {{ .Values.environment | quote }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+    spec:
+      containers:
+        - name: echo
+          image: "{{ .Values.image.repository }}:{{ $tag }}"
+          envFrom:
+            - configMapRef:
+                name: {{ .Release.Name }}-config
+          ports:
+            - containerPort: 80

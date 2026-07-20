@@ -1,0 +1,14 @@
+environment: dev
+
+replicaCount: 1
+
+image:
+  repository: ealen/echo-server
+
+ingress:
+  host: hello-dev.local
+
+config:
+  appName: echo-dev
+  logLevel: info
+  welcomeMessage: Hello from the development echo service
