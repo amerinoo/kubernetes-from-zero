@@ -15,6 +15,7 @@ graph LR
     H --> ENV["08 · Helm Environments"]
     ENV --> CM["09 · Helm ConfigMaps"]
     CM --> SEC["10 · Helm Secrets"]
+    SEC --> ARGO["11 · Argo CD"]
 ```
 
 ## Classes
@@ -31,6 +32,7 @@ graph LR
 | [08](classes/08-helm-envs/) | **Helm Environments** | Deploy the same chart with separate development and production values |
 | [09](classes/09-helm-configmap/) | **Helm ConfigMaps** | Store non-sensitive configuration and consume it as environment variables or mounted files |
 | [10](classes/10-helm-secrets/) | **Helm Secrets** | Reference an externally managed Secret and inject selected keys into Pods |
+| [11](classes/11-argocd/) | **Argo CD** | Deploy the class 10 Helm application from Git using GitOps |
 
 ## Images Used
 
@@ -47,6 +49,7 @@ graph LR
 - For class 06: an NGINX Ingress Controller installed in the cluster
 - For classes 07–10: Helm installed and available as `helm`
 - For class 10: an external Kubernetes Secret created in the target namespace
+- For class 11: Argo CD installed in the target cluster and access to the GitHub repository
 
 ## Notes
 
